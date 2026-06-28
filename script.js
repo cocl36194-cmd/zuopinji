@@ -42,19 +42,36 @@ revealTargets.forEach((element, index) => {
   element.style.transitionDelay = `${Math.min(index % 4, 3) * 42}ms`;
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.16, rootMargin: "0px 0px -6% 0px" },
-);
+if ("IntersectionObserver" in window) {
+  const revealPlayObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -12% 0px" },
+  );
 
-revealTargets.forEach((element) => revealObserver.observe(element));
+  const revealResetObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          entry.target.classList.remove("is-visible");
+        }
+      });
+    },
+    { threshold: 0, rootMargin: "18% 0px 18% 0px" },
+  );
+
+  revealTargets.forEach((element) => {
+    revealPlayObserver.observe(element);
+    revealResetObserver.observe(element);
+  });
+} else {
+  revealTargets.forEach((element) => element.classList.add("is-visible"));
+}
 
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
@@ -169,3 +186,44 @@ function setupCustomCursor() {
 }
 
 setupCustomCursor();
+
+function setupCursorGlow() {
+  if (!finePointerQuery.matches || reducedMotionQuery.matches) return;
+
+  let pageFrame = 0;
+  let pageX = window.innerWidth / 2;
+  let pageY = window.innerHeight * 0.18;
+
+  document.addEventListener("pointermove", (event) => {
+    pageX = event.clientX;
+    pageY = event.clientY;
+
+    if (pageFrame) return;
+    pageFrame = requestAnimationFrame(() => {
+      document.documentElement.style.setProperty("--page-glow-x", `${pageX}px`);
+      document.documentElement.style.setProperty("--page-glow-y", `${pageY}px`);
+      pageFrame = 0;
+    });
+  });
+
+  document.querySelectorAll("[data-cursor-glow]").forEach((surface) => {
+    let frame = 0;
+    let nextX = 50;
+    let nextY = 50;
+
+    surface.addEventListener("pointermove", (event) => {
+      const rect = surface.getBoundingClientRect();
+      nextX = ((event.clientX - rect.left) / rect.width) * 100;
+      nextY = ((event.clientY - rect.top) / rect.height) * 100;
+
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        surface.style.setProperty("--mx", `${nextX}%`);
+        surface.style.setProperty("--my", `${nextY}%`);
+        frame = 0;
+      });
+    });
+  });
+}
+
+setupCursorGlow();

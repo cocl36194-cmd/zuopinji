@@ -12,6 +12,9 @@
   --color-blue: #006adc;
   --color-blue-soft: #007aff;
   --color-shadow: rgba(0, 0, 0, 0.13);
+  --page-glow-x: 50vw;
+  --page-glow-y: 18vh;
+  --page-glow-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
   --font-display: "Arial Black", "Impact", "Microsoft YaHei UI", "PingFang SC", sans-serif;
   --font-body: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei UI", sans-serif;
   --font-hand: "Segoe Print", "Comic Sans MS", "Microsoft YaHei UI", cursive;
@@ -33,6 +36,7 @@
   --color-blue: #6aa9ff;
   --color-blue-soft: #87b9ff;
   --color-shadow: rgba(0, 0, 0, 0.38);
+  --page-glow-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
   --header-bg: rgba(8, 8, 8, 0.8);
 }
 
@@ -57,6 +61,15 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  background: radial-gradient(circle at var(--page-glow-x) var(--page-glow-y), var(--page-glow-color), transparent 24rem);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
 }
 
 body::after {
@@ -129,6 +142,33 @@ html.fine-cursor * {
   width: 14px;
 }
 
+[data-cursor-glow] {
+  --mx: 50%;
+  --my: 50%;
+  --cursor-glow-color: color-mix(in srgb, var(--color-accent) 6%, transparent);
+  position: relative;
+}
+
+[data-cursor-glow]::before {
+  background: radial-gradient(circle at var(--mx) var(--my), var(--cursor-glow-color), transparent 22rem);
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.hero-section[data-cursor-glow]::before {
+  display: none;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 720px) {
+  body::before,
+  [data-cursor-glow]::before {
+    display: none;
+  }
+}
+
 .site-header {
   align-items: center;
   -webkit-backdrop-filter: blur(18px) saturate(160%);
@@ -142,6 +182,12 @@ html.fine-cursor * {
   position: sticky;
   top: 0;
   z-index: 20;
+}
+
+.smooth-content,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .site-logo {
@@ -391,7 +437,8 @@ html.fine-cursor * {
 .portrait-card img {
   background: #fff;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center 45%;
   width: 100%;
 }
 
@@ -826,13 +873,25 @@ html.fine-cursor * {
 
 .reveal {
   --lag-y: 0px;
-  --reveal-y: 24px;
-  opacity: 0;
-  transform: translate3d(0, calc(var(--reveal-y) + var(--lag-y)), 0);
-  transition: opacity 560ms ease, transform 560ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --reveal-scale: 1;
+  --reveal-y: 0px;
+  opacity: 1;
+  transform: translate3d(0, calc(var(--reveal-y) + var(--lag-y)), 0) scale(var(--reveal-scale));
+  transform-origin: center bottom;
+  transition:
+    opacity 520ms cubic-bezier(0.45, 0, 0.35, 1),
+    transform 620ms cubic-bezier(0.45, 0, 0.35, 1);
+}
+
+.js-enabled .reveal:not(.is-visible) {
+  --reveal-scale: 0.8;
+  --reveal-y: 32px;
+  opacity: 0.5;
+  will-change: transform, opacity;
 }
 
 .reveal.is-visible {
+  --reveal-scale: 1;
   --reveal-y: 0px;
   opacity: 1;
 }
