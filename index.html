@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>郑天昊 Portfolio</title>
+    <meta
+      name="description"
+      content="郑天昊个人作品集，展示 AIGC 产品策划、短片导演、视频制作、Agent 工作流与 UI/UX 视觉设计作品。"
+    >
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+      })();
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="site-logo" href="#home">Zheng's Site</a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <a class="nav-zh" href="#home" data-en="HOME" aria-current="page"><span>首页</span></a>
+        <a class="nav-zh" href="#about" data-en="ABOUT"><span>关于</span></a>
+        <a class="nav-zh" href="#works" data-en="WORKS"><span>作品</span></a>
+        <a class="nav-zh" href="#resume" data-en="RESUME"><span>简历</span></a>
+        <a class="nav-zh" href="#contact" data-en="CONTACT"><span>联系</span></a>
+        <button class="nav-theme-toggle" id="navThemeToggle" type="button" aria-label="切换主题">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换主题">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-expanded="false">
+        <svg class="icon-hamburger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <main class="smooth-content" id="home">
+      <section class="hero-section">
+        <div class="page-shell hero-shell">
+          <div class="hero-copy reveal scroll-lag" data-lag="0.018">
+            <p class="eyebrow">AIGC Product / Planning / Video</p>
+            <h1>I'm Zheng Tianhao</h1>
+            <div class="hero-roles">
+              <span>AIGC 产品经理</span>
+              <span>策划</span>
+              <span>视频制作</span>
+            </div>
+            <p class="lede">
+              长沙师范学院艺术与科技本科在读，专业排名前 3%。我把 AIGC 生成、短片导演、视频后期和产品设计串成完整流程，关注从创意概念到可发布作品的落地。
+            </p>
+            <div class="hero-actions">
+              <a class="button-primary" href="#works">View Work</a>
+              <a class="button-secondary" href="#resume">Resume</a>
+            </div>
+          </div>
+          <div class="hero-visual reveal scroll-lag" data-lag="0.038">
+            <div class="portrait-card">
+              <img src="./assets/portrait-full.jpg" alt="郑天昊头像" width="900" height="1200" fetchpriority="high">
+            </div>
+            <span class="floating-pill pill-aigc">Top 3%</span>
+            <span class="floating-pill pill-design">UI / UX</span>
+            <span class="floating-pill pill-editing">AIGC Video</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-shell intro-section" id="about">
+        <p class="section-kicker reveal">About</p>
+        <div class="intro-grid">
+          <h2 class="section-title reveal scroll-lag" data-lag="0.018">Design, edit, generate, and ship visual products.</h2>
+          <div class="tool-panel reveal scroll-lag" data-lag="0.03">
+            <img class="tool-image" src="./assets/profile.jpg" alt="作品集个人信息与专业技能页" width="1422" height="800" loading="lazy">
+            <div class="tool-list">
+              <span>Klingai</span>
+              <span>Liblib</span>
+              <span>Jimeng</span>
+              <span>Blender</span>
+              <span>C4D</span>
+              <span>CapCut</span>
+              <span>Unity</span>
+              <span>Photoshop</span>
+              <span>Codex</span>
+              <span>Workbuddy</span>
+            </div>
+          </div>
+        </div>
+        <div class="resume-panel reveal">
+          <div class="resume-intro">
+            <p class="section-kicker">Profile</p>
+            <h2>郑天昊</h2>
+            <p>
+              求职意向：AIGC 产品经理 / 策划 / 视频制作。现居长沙，具备导演思维、影像叙事、三维建模和产品设计能力，擅长把技术工具与创意思维结合。
+            </p>
+          </div>
+          <dl class="meta-list">
+            <div><dt>Education</dt><dd>长沙师范学院 · 艺术与科技</dd></div>
+            <div><dt>Period</dt><dd>2023.09 - 2027.06</dd></div>
+            <div><dt>Rank</dt><dd>专业排名前 3%</dd></div>
+            <div><dt>Location</dt><dd>长沙</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="page-shell capability-section">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Skill</p>
+          <h2>专业能力</h2>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card reveal">
+            <span>01</span>
+            <h3>AIGC 创作</h3>
+            <p>独立完成脚本、角色与场景资产设计、AI 视频生成及全流程后期，覆盖短片、漫剧和音乐 MV。</p>
+          </article>
+          <article class="skill-card reveal">
+            <span>02</span>
+            <h3>导演与叙事</h3>
+            <p>具备镜头设计、氛围控制和影像叙事能力，能把主题、情绪和视觉风格统一到成片节奏中。</p>
+          </article>
+          <article class="skill-card reveal">
+            <span>03</span>
+            <h3>产品设计</h3>
+            <p>参与小程序产品设计与开发，覆盖智能排期、LBS 匹配、技能认证、云服务搭建和上线发布。</p>
+          </article>
+          <article class="skill-card reveal">
+            <span>04</span>
+            <h3>视觉与建模</h3>
+            <p>具备三维建模、角色/场景/道具制作、UI/UX 视觉延展和多软件协同能力。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-shell works-section" id="works">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Works</p>
+          <h2>精选作品</h2>
+        </div>
+        <div class="work-preview-grid">
+          <a class="project-card reveal" href="#comic">
+            <img src="./assets/disappeared-city.jpg" alt="The Disappeared City 项目封面" width="1422" height="800" loading="lazy">
+            <div>
+              <span>01</span>
+              <h3>The Disappeared City</h3>
+              <p>短片《消失的城市》，独立完成脚本、资产设计、AI 生成与后期制作。</p>
+            </div>
+          </a>
+          <a class="project-card reveal" href="#station">
+            <img src="./assets/last-station.jpg" alt="最后一站项目封面" width="1422" height="800" loading="lazy">
+            <div>
+              <span>02</span>
+              <h3>最后一站</h3>
+              <p>冬日怀旧爱情 MV，以停运旧火车站为背景，呈现误解、遗憾与和解。</p>
+            </div>
+          </a>
+          <a class="project-card reveal" href="#workflow">
+            <img src="./assets/aigc-workflow.jpg" alt="AIGC 工作流展示" width="1422" height="800" loading="lazy">
+            <div>
+              <span>03</span>
+              <h3>AIGC Workflow</h3>
+              <p>从视频脚本、镜头设计、提示词生成到后期剪辑的团队创作流程。</p>
+            </div>
+          </a>
+          <a class="project-card reveal" href="#starkid">
+            <img src="./assets/star-kid-light.jpg" alt="星孩公益服务 APP 主视觉" width="1422" height="800" loading="lazy">
+            <div>
+              <span>04</span>
+              <h3>星孩 Star Kid</h3>
+              <p>关爱自闭症儿童的小程序与公益服务 APP，包含产品设计、开发与视觉系统。</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="page-shell project-detail-section" id="comic">
+        <div class="detail-panel reveal scroll-lag" data-lag="0.018">
+          <div>
+            <p class="section-kicker">AIGC Comic Drama</p>
+            <h2>消失的城市</h2>
+            <p>
+              作品以“迷失，寻找都市遗址”为主题，融合情感叙事与视觉美学。负责剧情脚本撰写、人物与场景资产设计、AI 视频生成和全流程后期制作。
+            </p>
+          </div>
+          <img src="./assets/comic-process.jpg" alt="The Disappeared City 制作流程" width="1422" height="800" loading="lazy">
+        </div>
+      </section>
+
+      <section class="page-shell project-detail-section" id="station">
+        <div class="detail-panel detail-panel-reverse reveal scroll-lag" data-lag="0.018">
+          <div>
+            <p class="section-kicker">Music MV</p>
+            <h2>最后一站</h2>
+            <p>
+              以停运旧火车站为背景，演绎一段因误解分离七年后凭遗物探寻真相、完成情感和解的冬日爱情故事。整体氛围怀旧温情，强调遗憾、成全与释怀。
+            </p>
+          </div>
+          <img src="./assets/last-station-process.jpg" alt="最后一站制作流程" width="1422" height="800" loading="lazy">
+        </div>
+      </section>
+
+      <section class="page-shell project-detail-section" id="workflow">
+        <div class="detail-panel reveal scroll-lag" data-lag="0.018">
+          <div>
+            <p class="section-kicker">Agent & Editing</p>
+            <h2>从提示词到成片</h2>
+            <p>
+              工作流把视频脚本、核心角色、场景描述、镜头生成、对口型、视频剪辑与配音组织成可复用流程，用于提升 AIGC 项目的产出效率和风格一致性。
+            </p>
+          </div>
+          <img src="./assets/agent-music.jpg" alt="Agent 与音乐制作流程" width="1422" height="800" loading="lazy">
+        </div>
+      </section>
+
+      <section class="page-shell project-detail-section" id="starkid">
+        <div class="detail-panel detail-panel-reverse reveal scroll-lag" data-lag="0.018">
+          <div>
+            <p class="section-kicker">Product & UX</p>
+            <h2>星孩 Star Kid</h2>
+            <p>
+              聚焦关爱自闭症儿童的使用场景，设计智能排期、LBS 匹配、技能认证系统，并完成阿里云服务器搭建、域名备案及小程序上架发布。
+            </p>
+          </div>
+          <img src="./assets/star-kid-ux.jpg" alt="星孩 UI/UX 设计总览" width="1422" height="800" loading="lazy">
+        </div>
+      </section>
+
+      <section class="page-shell resume-section" id="resume">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Experience</p>
+          <h2>简历补充</h2>
+        </div>
+        <div class="timeline-list">
+          <article class="timeline-item reveal">
+            <div class="timeline-content">
+              <h3>长沙师范学院</h3>
+              <p class="timeline-role">艺术与科技（本科） · 专业排名前 3%</p>
+            </div>
+            <span class="timeline-date">2023.09 - 2027.06</span>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-content">
+              <h3>关爱自闭症儿童“星孩”小程序</h3>
+              <p class="timeline-role">产品设计与开发 · 校内推广运营 · 移动应用创新赛初赛资格</p>
+            </div>
+            <span class="timeline-date">Product</span>
+          </article>
+          <article class="timeline-item reveal">
+            <div class="timeline-content">
+              <h3>自闭症关爱公益短片</h3>
+              <p class="timeline-role">编导 / 视频制作 · 选题策划、脚本修改、AI 视频生成</p>
+            </div>
+            <span class="timeline-date">AIGC</span>
+          </article>
+        </div>
+
+        <div class="resume-tags reveal" aria-label="课程与软件技能">
+          <span>Java 程序设计</span>
+          <span>场景/角色建模</span>
+          <span>3D 动画设计</span>
+          <span>虚拟现实</span>
+          <span>信息可视化</span>
+          <span>交互装置设计</span>
+          <span>AIGC 应用</span>
+          <span>AI 视频创作</span>
+          <span>Adobe Illustrator</span>
+          <span>CorelDRAW</span>
+          <span>Processing</span>
+          <span>Obsidian</span>
+          <span>GitHub</span>
+        </div>
+
+        <div class="honor-grid">
+          <article class="honor-card reveal">
+            <span>Rank</span>
+            <h3>专业排名前 3%</h3>
+            <p>艺术与科技专业，主修 AIGC 应用、AI 视频创作、跨媒介设计、虚拟现实、3D 动画设计等课程。</p>
+          </article>
+          <article class="honor-card reveal">
+            <span>Contest</span>
+            <h3>移动应用创新赛初赛资格</h3>
+            <p>第十一届（2026）中国高校计算机大赛 - 移动应用创新赛，星孩小程序进入初赛。</p>
+          </article>
+          <article class="honor-card reveal">
+            <span>Certificate</span>
+            <h3>证书与能力</h3>
+            <p>大学英语四级、驾驶证 A1、计算机一级、NIT 全国计算机应用水平证书、普通话二级甲等。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-shell gallery-section">
+        <div class="section-heading reveal">
+          <p class="section-kicker">Portfolio Pages</p>
+          <h2>作品集页面</h2>
+        </div>
+        <div class="page-gallery reveal" aria-label="作品集页面横向展示">
+          <img src="./assets/short-design.jpg" alt="短片设计页" width="1422" height="800">
+          <img src="./assets/video-editing.jpg" alt="影片后期制作页" width="1422" height="800">
+          <img src="./assets/visual-design.jpg" alt="AIGC 视觉设计章节页" width="1422" height="800">
+          <img src="./assets/star-kid-dark.jpg" alt="星孩暗色主视觉" width="1422" height="800">
+          <img src="./assets/thanks.jpg" alt="作品集结束页" width="1422" height="800">
+        </div>
+      </section>
+
+      <section class="page-shell contact-section" id="contact">
+        <div class="contact-panel reveal" data-cursor-glow>
+          <p class="section-kicker">Contact</p>
+          <h2>Let's build the next idea.</h2>
+          <div class="contact-actions">
+            <button class="copy-button" type="button" data-copy="3552285994@qq.com">3552285994@qq.com</button>
+            <a class="button-secondary" href="tel:18754346980">18754346980</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Zheng Tianhao Works</span>
+      <span>Portfolio 2026</span>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
