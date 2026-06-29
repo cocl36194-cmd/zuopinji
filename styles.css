@@ -445,37 +445,59 @@ html.fine-cursor * {
 .floating-pill {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--color-panel) 88%, transparent);
-  border: 1px solid var(--color-line);
+  animation: floatingPillDrift 5.8s ease-in-out infinite;
+  background: color-mix(in srgb, var(--color-panel) 84%, var(--color-accent) 5%);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 34%, var(--color-line));
   border-radius: 999px;
-  box-shadow: 0 18px 42px var(--color-shadow);
+  box-shadow:
+    0 18px 42px var(--color-shadow),
+    0 0 18px color-mix(in srgb, var(--color-accent) 18%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 12%, transparent);
   color: var(--color-text);
   font-size: 0.88rem;
   font-weight: 900;
   padding: 12px 16px;
   position: absolute;
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   z-index: 2;
 }
 
 .floating-pill:hover {
-  box-shadow: 0 22px 54px var(--color-shadow);
+  border-color: color-mix(in srgb, var(--color-accent) 58%, var(--color-line));
+  box-shadow:
+    0 22px 54px var(--color-shadow),
+    0 0 28px color-mix(in srgb, var(--color-accent) 28%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 18%, transparent);
   transform: translateY(-2px) scale(1.04);
 }
 
 .pill-aigc {
+  animation-delay: 0s;
   right: 0;
   top: 13%;
 }
 
 .pill-design {
+  animation-delay: -1.8s;
   left: 0;
   top: 50%;
 }
 
 .pill-editing {
+  animation-delay: -3.4s;
   bottom: 15%;
   right: 12%;
+}
+
+@keyframes floatingPillDrift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
 }
 
 .intro-section {
@@ -1162,5 +1184,10 @@ html.fine-cursor * {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+
+  .floating-pill {
+    animation: none;
+    translate: 0 0;
   }
 }
